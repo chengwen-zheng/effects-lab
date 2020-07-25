@@ -1,0 +1,41 @@
+.ordinary-mixins-ticket-horizontal(@width, @height, @r, @top, @color) {
+    position: relative;
+    box-sizing: border-box;
+    padding: 0 @r;
+    width: @width;
+    height: @height;
+    background-clip: content-box;
+    background-color: @color;
+
+    &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "";
+        display: block;
+        width: @r + 1px;
+        height: 100%;
+        background: radial-gradient(@r circle at left @top, transparent @r, @color @r + 1px);
+    }
+
+    &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        content: "";
+        display: block;
+        //这里的 @r + 1px 是为了避免某些百分百比缩放页面时，出现空隙
+        width: @r + 1px;
+        height: 100%;
+        //这里的 @r + 1px 是为了防止出现锯齿
+        background: radial-gradient(@r circle at right @top, transparent @r, @color @r + 1px);
+    }
+}
+
+.parent {
+    .ordinary-mixins-ticket-horizontal(200px, 200px, 10px, 150px, #fc3a28);
+}
+
+.child {
+    line-height: 200px;
+}

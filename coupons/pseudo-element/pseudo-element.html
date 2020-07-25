@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="App">
+        <div class='parent'>
+            <div class="child">伪元素实现卡券效果</div>
+        </div>
+    </div>
+</body>
+
+</html>
+<style>
+    .App {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 600
+    }
+</style>
+
+<style>
+    /* less写法见main.less */
+    .parent {
+        position: relative;
+        box-sizing: border-box;
+        padding: 0 10px;
+        width: 200px;
+        height: 200px;
+        background-clip: content-box;
+        background-color: #fc3a28;
+    }
+
+    .parent::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "";
+        display: block;
+        width: 11px;
+        height: 100%;
+        background: radial-gradient(10px circle at left 150px, transparent 10px, #fc3a28 11px);
+    }
+
+    .parent::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        content: "";
+        display: block;
+        width: 11px;
+        height: 100%;
+        background: radial-gradient(10px circle at right 150px, transparent 10px, #fc3a28 11px);
+    }
+
+    .child {
+        line-height: 200px;
+    }
+</style>
